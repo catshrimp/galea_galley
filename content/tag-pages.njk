@@ -1,0 +1,27 @@
+---js
+// <script>
+const pagination = {
+	data: "collections",
+	size: 1,
+	alias: "tag",
+	filter: ["all", "posts"],
+	// addAllPagesToCollections: true,
+};
+
+const eleventyExcludeFromCollections = true;
+
+const eleventyComputed = {
+	title: "Теги '{{ tag }}'",
+	permalink: function(data) {
+		// If DuplicatePermalinkOutputError occurs, check that no tag occurs
+		// with differing case, e.g. "RSS" and "rss".
+		return `/tags/${data.tag}/`;
+	}
+};
+---
+<h1>Теги “{{ tag }}”</h1>
+
+{% set postslist = collections[ tag ] %}
+{% include "postslist.njk" %}
+
+<p><a href="/tags">все теги</a>.</p>
