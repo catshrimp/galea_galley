@@ -79,7 +79,7 @@ export default async function(eleventyConfig) {
 			language: "ru",
 			title: "Весло и Парус",
 			subtitle: "Из всех изобретений и усовершенствований, которых достигли ум и усердие человека, видимо, ни одно не является настолько универсально полезным, плодотворным и необходимым, как искусство мореплавания.",
-			base: "https://gallea-galley.com",
+			base: "https://galea-galley.com",
 			author: {
 				name: ""
 			}

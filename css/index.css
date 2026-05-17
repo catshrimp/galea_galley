@@ -299,3 +299,87 @@ header {
 	margin-right: 1em;
 }
 
+/* Hero block */
+.hero-block {
+	background: linear-gradient(135deg, var(--color-gray-20) 0%, var(--background-color) 100%);
+	border-left: 4px solid var(--text-color-link);
+	padding: 2rem;
+	margin: 2rem 0;
+	border-radius: 4px;
+}
+.hero-block h2 {
+	margin-top: 0;
+	color: var(--text-color-link);
+}
+.hero-block p {
+	font-size: 1.1em;
+	line-height: 1.6;
+	margin-bottom: 0;
+}
+
+/* Post list descriptions and tags */
+.postlist-description {
+	flex-basis: 100%;
+	margin: 0.5em 0 0 0;
+	padding-left: 1.75rem;
+	font-size: 0.9em;
+	color: var(--color-gray-90);
+	opacity: 0.8;
+}
+.postlist-read-more {
+	flex-basis: 100%;
+	padding-left: 1.75rem;
+	margin-top: 0.5em;
+	font-size: 0.9em;
+	font-weight: 600;
+	text-decoration: none;
+	color: var(--text-color-link);
+	display: inline-block;
+}
+.postlist-read-more:hover {
+	text-decoration: underline;
+}
+.postlist-reading-time {
+	margin-left: 1em;
+	font-size: 0.8125em;
+	color: var(--color-gray-90);
+	opacity: 0.7;
+}
+.postlist-tags {
+	flex-basis: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	margin-top: 0.5em;
+	padding-left: 1.75rem;
+}
+.postlist-tags .post-tag {
+	font-size: 0.85em;
+	padding: 0.2em 0.5em;
+	background: var(--color-gray-20);
+	border-radius: 3px;
+	text-decoration: none;
+}
+.postlist-tags .post-tag:hover {
+	background: var(--color-gray-50);
+}
+
+/* Search container */
+.search-container {
+	margin: 1.5rem 0;
+}
+#searchInput {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	font-size: 1rem;
+	font-family: var(--font-family);
+	border: 2px solid var(--color-gray-20);
+	border-radius: 4px;
+	background: var(--background-color);
+	color: var(--text-color);
+}
+#searchInput:focus {
+	outline: none;
+	border-color: var(--text-color-link);
+}
+

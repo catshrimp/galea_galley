@@ -3,6 +3,24 @@
 	<li class="postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
 		<a href="{{ post.url }}" class="postlist-link">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
 		<time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate("dd.LL.yyyy") }}</time>
+		{% set contentToUse = post.content or post.templateContent %}
+		{% set readTime = contentToUse | readingTime %}
+		{% if readTime > 0 %}
+		<span class="postlist-reading-time">⏱ {{ readTime }} мин</span>
+		{% endif %}
+		{% set hasValidDescription = post.data.description and post.data.description != post.data.title %}
+		{% set description = (hasValidDescription and post.data.description) or (contentToUse | excerpt(200)) %}
+		{% if description and description != post.data.title %}
+		<p class="postlist-description">{{ description }}</p>
+		<a href="{{ post.url }}" class="postlist-read-more">читать далее →</a>
+		{% endif %}
+		{% if post.data.tags %}
+		<div class="postlist-tags">
+			{%- for tag in post.data.tags | filterTagList %}
+			<a href="/tags/{{ tag }}/" class="post-tag">{{ tag }}</a>
+			{%- endfor %}
+		</div>
+		{% endif %}
 	</li>
 {%- endfor %}
 </ol>

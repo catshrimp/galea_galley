@@ -6,5 +6,35 @@ const eleventyNavigation = {
 ---
 <h1>Архив</h1>
 
+<div class="search-container">
+	<input type="text" id="searchInput" placeholder="Поиск по заголовкам и описаниям..." />
+</div>
+
+<div id="postsContainer">
 {% set postslist = collections.posts %}
 {% include "postslist.njk" %}
+</div>
+
+{% js %}
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('searchInput');
+	const postsContainer = document.getElementById('postsContainer');
+	const allPosts = Array.from(postsContainer.querySelectorAll('.postlist-item'));
+
+	searchInput.addEventListener('input', function(e) {
+		const searchTerm = e.target.value.toLowerCase().trim();
+
+		allPosts.forEach(post => {
+			const title = post.querySelector('.postlist-link')?.textContent.toLowerCase() || '';
+			const description = post.querySelector('.postlist-description')?.textContent.toLowerCase() || '';
+			const tags = Array.from(post.querySelectorAll('.post-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+
+			if (title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm)) {
+				post.style.display = '';
+			} else {
+				post.style.display = 'none';
+			}
+		});
+	});
+});
+{% endjs %}

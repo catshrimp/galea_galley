@@ -6,6 +6,11 @@ const eleventyNavigation = {
 
 const numberOfLatestPostsToShow = 30;
 ---
+<div class="hero-block">
+	<h2>Памяти хорошего человека</h2>
+	<p></p>
+</div>
+
 {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
 <h1>Последние {{ latestPostsCount }} записей</h1>
@@ -16,7 +21,7 @@ const numberOfLatestPostsToShow = 30;
 
 {% set morePosts = postsCount - numberOfLatestPostsToShow %}
 {% if morePosts > 0 %}
-<p>еще {{ morePosts }} записей <a href="blog.njk">в архиве</a>.</p>
+<p>еще {{ morePosts }} записей <a href="/blog">в архиве</a>.</p>
 {% endif %}
 
 {# List every content page in the project #}

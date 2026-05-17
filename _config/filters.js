@@ -40,4 +40,33 @@ export default function(eleventyConfig) {
 	eleventyConfig.addFilter("sortAlphabetically", strings =>
 		(strings || []).sort((b, a) => b.localeCompare(a))
 	);
+
+	// Extract excerpt from HTML content
+	eleventyConfig.addFilter("excerpt", (content, maxLength = 200) => {
+		if (!content) return '';
+		// Strip HTML tags
+		const text = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+		if (text.length <= maxLength) return text;
+		return text.substring(0, maxLength).trim() + '...';
+	});
+
+	// Calculate reading time based on character count
+	eleventyConfig.addFilter("readingTime", (content) => {
+		if (!content) return 0;
+		// Strip HTML tags
+		const text = content.replace(/<[^>]*>/g, '');
+		const charCount = text.length;
+		// Average reading speed: ~2000 characters per minute (Russian text)
+		const minutes = Math.ceil(charCount / 2000);
+		return minutes;
+	});
+
+	// Sort tags by popularity (number of posts)
+	eleventyConfig.addFilter("sortByPopularity", function(tags, collections) {
+		return (tags || []).sort((a, b) => {
+			const countA = collections[a] ? collections[a].length : 0;
+			const countB = collections[b] ? collections[b].length : 0;
+			return countB - countA; // Descending order
+		});
+	});
 };
